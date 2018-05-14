@@ -53,7 +53,25 @@ public class JobData {
 
         return allJobs;
     }
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
+        // load data, if not already loaded
+        loadData();
+
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
+
+        for (HashMap<String, String> hashMap : allJobs) {
+            for (String key : hashMap.keySet()) {
+                if(hashMap.get(key).toLowerCase().contains(value.toLowerCase())){
+                jobs.add(hashMap);
+                break;
+               }
+
+            }
+        }
+
+        return jobs;
+    }
     /**
      * Returns results of search the jobs data by key/value, using
      * inclusion of the search term.
@@ -72,13 +90,13 @@ public class JobData {
 
         ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-        for (HashMap<String, String> row : allJobs) {
-
-            String aValue = row.get(column);
-
-            if (aValue.contains(value)) {
-                jobs.add(row);
+        for (HashMap<String, String> hashMap : allJobs) {
+            for (String key : hashMap.keySet()) {
+                if(key.equalsIgnoreCase(column)) {
+                    jobs.add(hashMap);
+                }
             }
+
         }
 
         return jobs;
