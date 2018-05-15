@@ -92,7 +92,7 @@ public class JobData {
 
         for (HashMap<String, String> hashMap : allJobs) {
             for (String key : hashMap.keySet()) {
-                if(key.equalsIgnoreCase(column)) {
+                if(key.equalsIgnoreCase(column) && hashMap.get(key).toLowerCase().contains(value.toLowerCase()))  {
                     jobs.add(hashMap);
                 }
             }
